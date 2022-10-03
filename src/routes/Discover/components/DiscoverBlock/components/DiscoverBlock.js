@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import DiscoverItem from './DiscoverItem';
 import '../styles/_discover-block.scss';
-import RenderIf from '../../../../../common/components/RenderIf';
 
 function scrollContainer(id, { isNegative } = {}) {
   return () => {
@@ -14,20 +13,14 @@ function scrollContainer(id, { isNegative } = {}) {
   };
 }
 
-export default function DiscoverBlock({
-  text,
-  id,
-  data,
-  imagesKey = 'images',
-  isLoading,
-}) {
+export default function DiscoverBlock({ text, id, data, imagesKey = 'images' }) {
   return (
     <div className="discover-block">
       <div className="discover-block__header">
         <h2>{text}</h2>
         <span />
         {
-          data?.length ? (
+          data.length ? (
             <div className="animate__animated animate__fadeIn">
               <FontAwesomeIcon
                 icon={faChevronLeft}
@@ -38,9 +31,7 @@ export default function DiscoverBlock({
                 onClick={scrollContainer(id)}
               />
             </div>
-          ) : <RenderIf condition={isLoading && !data?.length}>
-          <div>Loading</div>
-        </RenderIf>
+          ) : null
         }
       </div>
       <div className="discover-block__row" id={id}>
